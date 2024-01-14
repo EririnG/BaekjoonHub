@@ -1,7 +1,7 @@
 test_case = int(input())
-
-for i in range(test_case):
-    repeat, char = input().split()
-    for j in range(len(char)):
-        print(char[j]*int(repeat),end='')
-    print()
+for i in range(test_case):    
+    repeat, s = input().split()
+    ans = ''
+    for j in range(len(s)):
+        ans += s[j]*int(repeat)
+    print(ans)
