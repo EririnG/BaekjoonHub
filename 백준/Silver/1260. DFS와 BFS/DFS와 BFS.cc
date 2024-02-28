@@ -50,8 +50,9 @@ int main()
 		adj[a].push_back(b);
 		adj[b].push_back(a);
 	}
-	for (int i = 1; i <= node; i++) {
-		sort(adj[i].begin(), adj[i].end()); // 낮은 숫자부터 탐색.
+	for (int i = 1; i <= node; ++i)
+	{
+		sort(adj[i].begin(), adj[i].end());
 	}
 	bfs(start);
 	memset(visited, false, sizeof(visited));
