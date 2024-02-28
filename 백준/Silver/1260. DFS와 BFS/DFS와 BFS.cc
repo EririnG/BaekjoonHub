@@ -38,29 +38,29 @@ void bfs(int x)
 	}
 }
 
-int main() {
-	int n, m, v, a, b;
-	cin >> n >> m >> v;
-
-	for (int i = 1; i <= m; i++) {
+int main()
+{
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	int node, edge, start;
+	cin >> node >> edge >> start;
+	for (int i = 0; i < edge; ++i)
+	{
+		int a, b;
 		cin >> a >> b;
-		adj[a].push_back(b); //양방향 간선처리
-		adj[b].push_back(a); //양방향 간선처리
+		adj[a].push_back(b);
+		adj[b].push_back(a);
 	}
-	for (int i = 1; i <= n; i++) {
+	for (int i = 1; i <= node; i++) {
 		sort(adj[i].begin(), adj[i].end()); // 낮은 숫자부터 탐색.
 	}
-	bfs(v);
+	bfs(start);
 	memset(visited, false, sizeof(visited));
-	dfs(v);
-	for (int i = 0; i < result_dfs.size(); i++) {
-		cout << result_dfs[i] << " ";
-	}
-	cout << '\n';
-	for (int i = 0; i < result_bfs.size(); i++) {
-		cout << result_bfs[i] << " ";
-	}
-
+	dfs(start);
+	for (auto i : result_dfs)
+		cout << i << " ";
+	cout << "\n";
+	for (auto i : result_bfs)
+		cout << i << " ";
+	
 	return 0;
 }
-
