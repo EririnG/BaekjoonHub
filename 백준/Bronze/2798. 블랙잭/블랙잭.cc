@@ -3,34 +3,30 @@ using namespace std;
 
 int main()
 {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-	
-	int num, goal, sum,max = 0;
-	cin >> num >> goal;
-	vector<int> num_arr(num);
-	for (int i = 0; i < num; ++i)
+	int n, m, max = 0;
+	vector<int> array;
+	cin >> n >> m;
+	for (int i = 0; i < n; ++i)
 	{
-		int input;
-		cin >> input;
-		num_arr[i]= input;
+		int temp;
+		cin >> temp;
+		array.push_back(temp);
 	}
 
-	for (int i = 0; i < num-2; ++i)
+	for (int i = 0; i < n-2; ++i)
 	{
-		for (int j = i + 1 ;j < num - 1; ++j)
+		for (int j = i + 1; j < n - 1; ++j)
 		{
-			for (int k = j + 1; k < num; ++k)
+			for (int k = j + 1; k < n; ++k)
 			{
-				sum = num_arr[i] + num_arr[j] + num_arr[k];
-				if (sum <= goal && sum > max)
-					max = sum;
-
+				int temp = array[i] + array[j] + array[k];
+				if (temp <= m)
+					if (temp > max)
+						max = temp;
 			}
 		}
 	}
+
 	cout << max;
-
-
-
 	return 0;
 }
