@@ -1,44 +1,33 @@
 #include <bits/stdc++.h>
+using namespace std;
 
-int temp1;
-int temp2 = 0;
-bool ascend = true;
-int main() {
-	for (int i = 0; i < 8; i++)
+int main() 
+{
+	bool ascend = true;
+	bool descend = true;
+	vector<int> array;
+
+	for (int i = 0; i < 8; ++i)
 	{
-		std::cin >> temp1;
-		if (temp1 == 1 and i == 0)
-		{
-			ascend = true;
-			temp2 = temp1;
-		}
-		else if (temp1 == 8 and i == 0)
-		{
-			ascend = false;
-			temp2 = temp1;
-		}
-		else
-		{
-			if (temp2 == 0)
-			{
-				temp2 = temp1;
-				continue;
-			}
-			int ans = temp2 - temp1;
-			if (ans < 0)
-				ans *= -1;
-			if (ans > 1)
-			{
-				std::cout << "mixed";
-				return 0;
-			}
-			temp2 = temp1;
-		}
+		int temp;
+		cin >> temp;
+		array.push_back(temp);
 	}
+
+	for (int i = 1; i < 8; ++i)
+	{
+		if (array[i] > array[i - 1])
+			descend = false;
+		else if (array[i] < array[i - 1])
+			ascend = false;
+	}
+
 	if (ascend)
-		std::cout << "ascending";
+		cout << "ascending";
+	else if (descend)
+		cout << "descending";
 	else
-		std::cout << "descending";
+		cout << "mixed";
 
 	return 0;
 }
