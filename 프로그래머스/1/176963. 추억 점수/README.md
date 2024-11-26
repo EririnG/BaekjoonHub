@@ -1,6 +1,6 @@
 # [level 1] 추억 점수 - 176963 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/176963#) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/176963) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 11월 26일 16:55:03
+2024년 11월 26일 16:55:16
 
 ### 문제 설명
 
