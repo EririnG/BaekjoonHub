@@ -1,31 +1,34 @@
 #include <bits/stdc++.h>
+
 using namespace std;
-string name[100001];
+int n,m;
+string temp;
+map<int, string> map1;
+map<string,int> map2;
 
 int main()
 {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-	int n, m;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	cin >> n >> m;
-	map<string, int> poket;
-
-	for (int i = 0; i < n; ++i)
+	for(int i = 1; i<=n; ++i)
 	{
-		string tmp;
-		cin >> tmp;
-		poket.insert({ tmp,i });
-		name[i] = tmp;
+		cin >> temp;
+		map1.insert({i,temp});
+		map2.insert({temp,i});
 	}
 	
-	for (int i = 0; i < m; ++i)
+	for(int i = 0; i< m; ++i)
 	{
-		string tmp;
-		cin >> tmp;
-		if (65 > tmp[0])
-			cout << name[stoi(tmp)-1] << '\n';
+		cin >> temp;
+		if(temp[0] >= 'A')
+		{
+			cout << map2[temp] << '\n';
+		}
 		else
-			cout << poket.find(tmp)->second + 1 << '\n';
+		{
+			cout << map1[stoi(temp)] << '\n';
+		}
 	}
-	
-	return 0;
 }
