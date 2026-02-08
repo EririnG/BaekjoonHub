@@ -1,45 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
-int a[26], cnt;
+int a[200], cnt, flag;
 string s, hi,bye, ret;
 char mid;
-bool flag;
 int main()
 {
 	cin >> s;
-	for(int i =0; i<s.size();++i)
+	for(char c : s) a[c]++;
+	for(int i = 'Z'; i>='A'; --i)
 	{
-		a[s[i]-'A']++;
-	}
-	
-	for(int i = 0; i< 26; ++i)
-	{
-		if(a[i]&1)
+		if(a[i])
 		{
-			mid = i + 'A';
-			cnt++;
-			a[i]--;
-			flag = true;
-			//cout << mid << '\n';
+			if(a[i]&1)
+			{
+				mid = char(i);
+				flag++;
+				a[i]--;
+			} 
+			if(flag == 2)
+				break;
+			for(int j = 0; j<a[i]; j+=2)
+			{
+				ret = char(i) + ret;
+				ret += char(i);
+			}
 		}
 	}
-	if(cnt>1)
-	{
+	if(mid)
+		ret.insert(ret.begin() + ret.size()/2, mid);
+	if(flag == 2)
 		cout << "I'm Sorry Hansoo" << '\n';
-		return 0;
-	}
-	for(int i = 'Z'; i >= 'A'; --i)
-	{
-		for (int j = 0; j<a[i-'A']; j+=2)
-		{
-			ret = char(i) + ret;
-			ret += char(i);
-		}
-	}
-	if(flag)
-	{
-		ret.insert(ret.begin() + ret.size()/2,mid);
-	}
-	cout << ret << '\n';
+	else
+		cout << ret << '\n';
 	return 0;
 }
