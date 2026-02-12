@@ -1,57 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAX = 51;
-int test_case, m,n,k;
-int board[MAX][MAX];
-int visited[MAX][MAX];
-int dy[] = { 0,0,-1,1 };
-int dx[] = { -1,1,0,0 };
-
-void DFS(int y, int x) 
+int t, m, n, k, cx, cy,a[54][54], nx,ny,ret, q;
+int visited[54][54];
+int dy[4] = {-1,0,1,0};
+int dx[4] = {0,1,0,-1};
+void dfs(int y, int x)
 {
 	visited[y][x] = 1;
-
-	for (int i = 0; i < 4; i++) 
+	for(int i = 0; i<4; ++i)
 	{
-		int nx = x + dx[i];
-		int ny = y + dy[i];
-
-		if (nx < 0 || nx >= m || ny < 0 || ny >= n)
-			continue;
-
-		if (board[ny][nx] == 1 && visited[ny][nx] == 0) {
-			DFS(ny, nx);
-		}
+		ny = y + dy[i];
+		nx = x + dx[i];
+		if(ny < 0 || nx < 0 || ny >= n || nx >= m) continue;
+		if(a[ny][nx] == 1 && visited[ny][nx] == 0)
+			dfs(ny,nx);
 	}
+	return;
 }
 
-int main() 
+int main()
 {
-    cin >> test_case;
-
-    for(int i = 0; i< test_case; ++i)
-    {
-        cin >> m >> n >> k;
-
-        memset(board, 0, sizeof(board));
-        memset(visited, 0, sizeof(visited));
-
-        for(int i =0 ; i<k; ++i)
-        {
-            int x, y;
-            cin >> x >> y;
-            board[y][x] = 1;
-        }
-        int cnt = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (board[i][j] == 1 && visited[i][j] == 0) {
-                    DFS(i, j);
-                    cnt++;
-                }
-            }
-        }
-        cout << cnt << endl;
-    }
+	cin >> t;
+	while(t--)
+	{
+		fill(&a[0][0], &a[0][0] + 54*54, 0);
+		fill(&visited[0][0], &visited[0][0] + 54 *54,0);
+		ret = 0;
+		cin >> m >> n >> k;
+		for(int i = 0; i < k; ++i)
+		{
+			cin >> cx >> cy;
+			a[cy][cx] = 1;
+		}	
+		
+		for(int i=0;i<n;++i)
+		{
+			for(int j = 0; j< m; ++j)
+			{
+				if(a[i][j] == 1 && visited[i][j]==0)
+				{
+					dfs(i,j);
+					//cout << i << j << '\n';
+					ret++;
+				}
+			}
+		}
+		cout << ret << '\n';
+	}
 }
